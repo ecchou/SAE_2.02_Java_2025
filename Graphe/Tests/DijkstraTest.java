@@ -1,6 +1,8 @@
-package dijkstra.graph;
+package dijkstra.Graphe.Tests;
 
-import dijkstra.graph.ShortestPath.Distances;
+import dijkstra.Graphe.IGraphe;
+import dijkstra.Graphe.ShortestPath.Distances;
+import dijkstra.Graphe.IVarGraph;
 import graph.GrapheHHAdj;
 import org.junit.jupiter.api.Test;
 
@@ -17,12 +19,12 @@ class DijkstraTest {
 
 	@Test
 	void test() {
-		VarGraph g = new GrapheHHAdj();
+		IVarGraph g = new GrapheHHAdj();
 		g.peupler("A-B(6), A-C(1), A-D(2), B-E(1), C-E(4), D-B(1), E-F(1)");
 		tester(g);
 	}
 
-	void tester(Graph g) {
+	void tester(IGraphe g) {
 		Distances<String> dst = dijkstra.compute(g, FROM);
 		assertEquals(EXPECTED_DIST, dst.dist().get(TO));
 		String c = EXPECTED_PATH.get(0);
@@ -35,7 +37,7 @@ class DijkstraTest {
 
 	@Test
 	void pasDeValuationNegative() {
-		VarGraph g = new GrapheHHAdj();
+		IVarGraph g = new GrapheHHAdj();
 		g.peupler("A-B(6), A-C(1), A-D(2), B-E(-3), C-E(4), D-B(1), E-F(1)"); // B-E negatif !
 		assertThrows(IllegalArgumentException.class,
 				()->  dijkstra.compute(g, FROM));

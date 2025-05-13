@@ -1,4 +1,4 @@
-package dijkstra.graph;
+package dijkstra.Graphe;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @param <T> Identifiant des sommets. Le type doit disposer d'une méthode hashcode.
  */
-public interface Graph<T> {
+public interface IGraphe<T> {
 
 	/**
 	 * Un arc du graphe (désigné par sa valuation et le sommet destination).
