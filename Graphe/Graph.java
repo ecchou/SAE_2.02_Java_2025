@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @param <T> Identifiant des sommets. Le type doit disposer d'une méthode hashcode.
  */
-public interface IGraphe<T> {
+public interface Graph<T> {
 
 	/**
 	 * Un arc du graphe (désigné par sa valuation et le sommet destination).

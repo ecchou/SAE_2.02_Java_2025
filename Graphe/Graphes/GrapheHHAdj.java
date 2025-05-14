@@ -1,16 +1,18 @@
 package dijkstra.Graphe.Graphes;
 
-import dijkstra.Graphe.IVarGraph;
+
+import dijkstra.Graphe.VarGraph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.lang.String;
 
-public class graphe<String> implements IVarGraph<String> {
+public class GrapheHHAdj implements VarGraph {
 
     private HashMap<String, List<Arc<String>>> arcs;
 
-    public graphe(){
+    public GrapheHHAdj(){
         arcs = new HashMap<>();
     }
 
@@ -23,7 +25,7 @@ public class graphe<String> implements IVarGraph<String> {
 
         // Sinon on parcoure chaque arc et on regarde si le point destination est s2
         for (Arc<String> sommet : arcs.get(s1)){
-            if (sommet == s2){
+            if (sommet.dst().equals(s2)){
                 return true; // Dans ce cas l'arc existe
             }
         }
@@ -33,30 +35,35 @@ public class graphe<String> implements IVarGraph<String> {
     }
 
     // Ajoute un point
-    public void ajouterSommet(String s){
-        arcs.put(s, new ArrayList<>());
+    public void ajouterSommet(String noeud){
+        if (!arcs.containsKey(noeud)){ // si le point n'existe pas déjà
+            arcs.put(noeud, new ArrayList<>());
+        }
+
     }
 
     // Ajoute un arc
-    public void ajouterArc(String src, String dst, int val) throws IllegalArgumentException {
+    public void ajouterArc(String source, String destination, Integer valeur) throws IllegalArgumentException {
         // Si l'arc existe déjà
-        if (arcExiste(src, dst)){
+        if (arcExiste(source, destination) ){
             throw new IllegalArgumentException();
         }
 
-        // Si le point source n'a pas d'arc
-        if (!arcs.containsKey(src)){
+        // Si le point source n'a pas d'arc (pas nécessaire si on est passé par ajouterSommet)
+        if (!arcs.containsKey(source)){
             List<Arc<String>> listeTemp = new ArrayList<>();
-            listeTemp.add(new Arc<>(val, dst));
-            arcs.put(src, listeTemp);
+            listeTemp.add(new Arc<>(valeur, destination));
+            arcs.put(source, listeTemp);
         }
         else { // Si il a déjà un ou des arc(s)
-            arcs.get(src).add(new Arc<>(val, dst));
+            Arc<String> a = new Arc<>(valeur, destination);
+            arcs.get(source).add(a);
         }
     }
 
     @Override
     public List<Arc<String>> getSucc(String s){
+        //System.out.println(arcs.toString());
         return arcs.getOrDefault(s, null);
     }
 

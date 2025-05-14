@@ -71,12 +71,12 @@ public interface ShortestPath<T> {
 	 *                 distance est connue.           
 	 * @return Une instance de {@code Resultat<T>} contenant tous les résultats.
 	 */
-	Distances<T> compute(IGraphe<T> g, T src, Animator<T> animator) throws IllegalArgumentException;
+	Distances<T> compute(Graph<T> g, T src, Animator<T> animator) throws IllegalArgumentException;
 	
 	/**
 	 * Calcul des plus courts chemins sans animation.
 	 */
-	default Distances<T> compute(IGraphe<T> g, T src) throws IllegalArgumentException {
+	default Distances<T> compute(Graph<T> g, T src) throws IllegalArgumentException {
 		return compute(g, src, (n, d) -> {});
 	}
 }
