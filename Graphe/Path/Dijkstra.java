@@ -36,20 +36,25 @@ public class Dijkstra<T> implements ShortestPath<T> {
             // Pour chaque arc sortant du sommet
             System.out.println("Successeurs de " + sommet + ":" + g.getSucc(sommet).toString());
             for (Arc<T> arc : g.getSucc(sommet)){
+
+                // Si l'arc a un poids négatif, erreur
                 if (arc.val() < 0)
                     throw new IllegalArgumentException();
 
+                // avec T le point de destination et distance sa distance au point de départ via son prédécésseur
                 T destination = arc.dst();
                 int distance = dist.get(sommet) + arc.val();
 
+                // si le point n'a pas encore de distance calculée ou si on a trouvé mieux :
                 if (!dist.containsKey(destination) || distance < dist.get(destination)) {
+                    // on met la distance trouvée ou on remplace celle trouvée avant
                     if (!dist.containsKey(destination))
                         dist.put(destination, distance);
                     else
                         dist.replace(destination, distance);
-                    pred.put(destination, sommet);
-                    file.add(destination);
-                    System.out.println("Sommet " + destination + " ajouté à la file");
+                    pred.put(destination, sommet);  // on indique son prédécésseur sur le chemin actuel
+                    file.add(destination);          // on l'ajoute à la file d'attente
+                    //System.out.println("Sommet " + destination + " ajouté à la file");
                 }
 
             }
