@@ -1,4 +1,4 @@
-package dijkstra.Graphe;
+package dijkstra.src;
 
 // ajouterSommet ne fait rien si un sommet est deja present
 // ajouterArc leve une IllegalArgumentException si l'arc est deja present

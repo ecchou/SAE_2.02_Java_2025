@@ -1,8 +1,8 @@
-package dijkstra.Graphe.Path;
+package dijkstra.src.path;
 
-import dijkstra.Graphe.Graph.Arc;
-import dijkstra.Graphe.Graph;
-import dijkstra.Graphe.ShortestPath;
+import dijkstra.src.Graph.Arc;
+import dijkstra.src.Graph;
+import dijkstra.src.ShortestPath;
 
 import java.util.*;
 
