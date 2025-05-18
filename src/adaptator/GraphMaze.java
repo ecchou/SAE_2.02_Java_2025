@@ -1,7 +1,7 @@
-package dijkstra.src.adaptator;
+package adaptator;
 
 import maze.Maze;
-import dijkstra.src.Graph;
+import graph.Graph;
 
 import java.util.ArrayList;
 import java.util.List;

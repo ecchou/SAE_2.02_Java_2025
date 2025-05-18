@@ -1,7 +1,4 @@
-package dijkstra.src.graph;
-
-
-import dijkstra.src.VarGraph;
+package graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;

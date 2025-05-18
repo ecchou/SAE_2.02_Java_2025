@@ -1,10 +1,10 @@
-package dijkstra.src.applications;
+package applications;
 
-import dijkstra.src.Graph;
-import dijkstra.src.path.Dijkstra;
-import dijkstra.src.ShortestPath.*;
-import dijkstra.src.VarGraph;
-import dijkstra.src.graph.GrapheHHAdj;
+import graph.Graph;
+import path.Dijkstra;
+import graph.ShortestPath.*;
+import graph.VarGraph;
+import graph.GrapheHHAdj;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
