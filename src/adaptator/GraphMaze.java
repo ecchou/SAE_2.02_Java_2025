@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Set;
 
 
-public class GrapheMaze<T> implements Graph<T> {
+public class GraphMaze<T> implements Graph<T> {
 
     private Maze<T> maze = null;
 
-    public GrapheMaze(Maze<T> maze) {
+    public GraphMaze(Maze<T> maze) {
         this.maze = maze;
     }
 

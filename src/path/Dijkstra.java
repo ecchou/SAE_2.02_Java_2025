@@ -31,10 +31,10 @@ public class Dijkstra<T> implements ShortestPath<T> {
 
             // On log qu'on traite ce sommet avec sa distance à la source
             animator.accept(sommet, dist.get(sommet));
-            System.out.println("Sommet " + sommet + ": " + dist.get(sommet));
-
+            //System.out.println("Sommet " + sommet + ": " + dist.get(sommet));
+            //System.out.println("Successeurs de " + sommet + ":" + g.getSucc(sommet).toString());
             // Pour chaque arc sortant du sommet
-            System.out.println("Successeurs de " + sommet + ":" + g.getSucc(sommet).toString());
+
             for (Arc<T> arc : g.getSucc(sommet)){
 
                 // Si l'arc a un poids négatif, erreur

@@ -42,7 +42,7 @@ public interface ShortestPath<T> {
 	 * @param <T> Identifiant des sommets. Le type T doit être "hachable".
 	 */
 	public record Distances<T>(Map<T, Integer> dist, Map<T, T> pred) implements Serializable {
-		
+
 		public static <T> void writeDist(Distances<T> dist, String name) throws IOException {
 			try (FileOutputStream f = new FileOutputStream(name);
 					ObjectOutputStream out = new ObjectOutputStream(f)) {
@@ -62,13 +62,13 @@ public interface ShortestPath<T> {
 
 	/**
 	 * Calcul des plus courts chemins.
-	 * 
-	 * @param <T>      Identifiant des sommets. Le type doit être "hachable".
+	 //*
+	 * //@param <T>      Identifiant des sommets. Le type doit être "hachable".
 	 * @param g        Le graphe pour lequel le calcul est demandé.
 	 * @param src      Le sommet de {@code g} à partir duquel les plus courts chemins
 	 *                 sont demandés.
-	 * @param animator L'animateur du parcours. Il est invoqué chaque fois qu'une 
-	 *                 distance est connue.           
+	 * @param animator L'animateur du parcours. Il est invoqué chaque fois qu'une
+	 *                 distance est connue.
 	 * @return Une instance de {@code Resultat<T>} contenant tous les résultats.
 	 */
 	Distances<T> compute(Graph<T> g, T src, Animator<T> animator) throws IllegalArgumentException;

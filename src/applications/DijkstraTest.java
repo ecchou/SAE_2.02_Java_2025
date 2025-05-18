@@ -1,4 +1,4 @@
-package dijkstra.src.tests;
+package dijkstra.src.applications;
 
 import dijkstra.src.Graph;
 import dijkstra.src.path.Dijkstra;
