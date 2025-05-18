@@ -26,40 +26,44 @@ public class Dijkstra<T> implements ShortestPath<T> {
             // On récupère et on enlève le premier sommet de la file d'attente
             T sommet = file.poll();
 
-            if (treated.contains(sommet))
-                continue;
+            // Si la distance minimale du sommet à la source n'est pas encore connue
+            if (!treated.contains(sommet)) {
 
-            // On log qu'on traite ce sommet avec sa distance à la source
-            animator.accept(sommet, dist.get(sommet));
-            //System.out.println("Sommet " + sommet + ": " + dist.get(sommet));
-            //System.out.println("Successeurs de " + sommet + ":" + g.getSucc(sommet).toString());
-            // Pour chaque arc sortant du sommet
+                // On log qu'on traite ce sommet avec sa distance à la source
+                animator.accept(sommet, dist.get(sommet));
+                //System.out.println("Sommet " + sommet + ": " + dist.get(sommet));
+                //System.out.println("Successeurs de " + sommet + ":" + g.getSucc(sommet).toString());
+                // Pour chaque arc sortant du sommet
 
-            for (Arc<T> arc : g.getSucc(sommet)){
+                for (Arc<T> arc : g.getSucc(sommet)){
 
-                // Si l'arc a un poids négatif, erreur
-                if (arc.val() < 0)
-                    throw new IllegalArgumentException();
+                    // Si l'arc a un poids négatif, erreur
+                    if (arc.val() < 0)
+                        throw new IllegalArgumentException();
 
-                // avec T le point de destination et distance sa distance au point de départ via son prédécésseur
-                T destination = arc.dst();
-                int distance = dist.get(sommet) + arc.val();
+                    // avec T le point de destination et distance sa distance au point de départ via son prédécésseur
+                    T destination = arc.dst();
+                    int distance = dist.get(sommet) + arc.val();
 
-                // si le point n'a pas encore de distance calculée ou si on a trouvé mieux :
-                if (!dist.containsKey(destination) || distance < dist.get(destination)) {
-                    // on met la distance trouvée ou on remplace celle trouvée avant
-                    if (!dist.containsKey(destination))
-                        dist.put(destination, distance);
-                    else
-                        dist.replace(destination, distance);
-                    pred.put(destination, sommet);  // on indique son prédécésseur sur le chemin actuel
-                    file.add(destination);          // on l'ajoute à la file d'attente
-                    //System.out.println("Sommet " + destination + " ajouté à la file");
+                    // si le point n'a pas encore de distance calculée ou si on a trouvé mieux :
+                    if (!dist.containsKey(destination) || distance < dist.get(destination)) {
+                        // on met la distance trouvée ou on remplace celle trouvée avant
+                        if (!dist.containsKey(destination))
+                            dist.put(destination, distance);
+                        else
+                            dist.replace(destination, distance);
+                        pred.put(destination, sommet);  // on indique son prédécésseur sur le chemin actuel
+                        file.add(destination);          // on l'ajoute à la file d'attente
+                        //System.out.println("Sommet " + destination + " ajouté à la file");
+                    }
+
                 }
+
+                treated.add(sommet);
 
             }
 
-            treated.add(sommet);
+
 
         }
 
